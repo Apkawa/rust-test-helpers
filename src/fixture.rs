@@ -1,5 +1,4 @@
 use std::env;
-use std::fs::read_to_string;
 use std::path::{Path, PathBuf};
 
 ///
@@ -17,7 +16,7 @@ pub fn get_git_root() -> Option<PathBuf> {
     let mut dir = env::current_dir().ok()?;
     while dir.exists() {
         let p = Path::new(&dir).join(".git");
-        if p.exists() && p.is_dir() {
+        if p.exists() {
             return Some(dir);
         }
         if !dir.pop() {
